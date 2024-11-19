@@ -11,13 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
-@Controller
-@RequestMapping("/message")
+@RestController
+@RequestMapping("/contact")
 public class MessageController {
     private final MessageService messageService;
 
     @CrossOrigin
-    @PostMapping
+    @PostMapping(value = "message")
     public ResponseEntity<MessageResponseDTO> sendMessage(@RequestBody MessageRequestDTO message) {
         return ResponseEntity.ok(messageService.save(message));
     }

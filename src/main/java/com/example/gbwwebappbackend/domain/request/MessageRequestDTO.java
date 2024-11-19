@@ -15,6 +15,9 @@ public class MessageRequestDTO {
     @NotBlank
     @Length(min = 3, max = 30)
     private String lastName;
+    @NotBlank
+    @Length(min = 3, max = 30)
+    private String company;
     @Email
     private String email;
     @NotBlank

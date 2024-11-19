@@ -14,6 +14,7 @@ public class MessageResponseDTO {
     private long id;
     private String firstName;
     private String lastName;
+    private String company;
     private String email;
     private String phone;
     private String content;

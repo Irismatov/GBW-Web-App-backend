@@ -1,10 +1,7 @@
 package com.example.gbwwebappbackend.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import lombok.*;
 
@@ -20,8 +17,9 @@ public class Message extends BaseModel {
     private Long id;
     private String firstName;
     private String lastName;
-    @Email
+    private String company;
     private String email;
     private String phone;
+    @Column(length = 10000)
     private String content;
 }
