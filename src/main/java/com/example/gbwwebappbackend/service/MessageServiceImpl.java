@@ -8,6 +8,8 @@ import com.example.gbwwebappbackend.repository.MessageRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 public class MessageServiceImpl implements MessageService {
@@ -17,7 +19,11 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public MessageResponseDTO save(MessageRequestDTO message) {
-        Message save = messageRepository.save(messageMapper.fromDtoToEntity(message));
+        Message entity = messageMapper.fromDtoToEntity(message);
+
+        entity.setId(UUID.randomUUID().toString());
+
+        Message save = messageRepository.save(entity);
         return messageMapper.fromEntityToDto(save);
     }
 }

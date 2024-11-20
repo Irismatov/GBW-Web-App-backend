@@ -13,8 +13,7 @@ import lombok.*;
 @Builder
 public class Message extends BaseModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private String id;
     private String firstName;
     private String lastName;
     private String company;
