@@ -1,4 +1,4 @@
-package com.example.gbwwebappbackend.service;
+package com.example.gbwwebappbackend.service.message;
 
 import com.example.gbwwebappbackend.domain.request.MessageRequestDTO;
 import com.example.gbwwebappbackend.domain.response.MessageResponseDTO;
