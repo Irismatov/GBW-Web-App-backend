@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class MessageController {
     private final MessageService messageService;
 
-    @CrossOrigin
+//    @CrossOrigin
     @PostMapping(value = "message")
     public ResponseEntity<MessageResponseDTO> sendMessage(@RequestBody MessageRequestDTO message) {
         return ResponseEntity.ok(messageService.save(message));
