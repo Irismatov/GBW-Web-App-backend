@@ -55,7 +55,13 @@ public class AttachmentServiceImpl implements AttachmentService {
 
         if (fileExtension.equals("pdf")) {
             headDirectory = headDirectory + File.separator + resumesDir;
-        } else {
+        } else if (fileExtension.equals("jpg")
+                || fileExtension.equals("jpeg")
+                || fileExtension.equals("png")
+                || fileExtension.equals("gif")
+                || fileExtension.equals("bmp")
+        || fileExtension.equals("tif")
+        || fileExtension.equals("tiff")){
             headDirectory = headDirectory + File.separator + newsDir;
         }
 
