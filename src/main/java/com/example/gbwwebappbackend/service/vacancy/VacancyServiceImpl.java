@@ -1,48 +1,31 @@
 package com.example.gbwwebappbackend.service.vacancy;
 
-import com.example.gbwwebappbackend.entity.Attachment;
-import com.example.gbwwebappbackend.entity.EmailForNewsLetter;
-import com.example.gbwwebappbackend.entity.VacancyApplication;
-import com.example.gbwwebappbackend.repository.AttachmentRepository;
-import com.example.gbwwebappbackend.repository.EmailForNewsLetterRepository;
-import com.example.gbwwebappbackend.repository.VacancyApplicationRepository;
-import com.example.gbwwebappbackend.service.attachment.AttachmentService;
-import com.example.gbwwebappbackend.service.newsletter.NewsLetterService;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.util.UUID;
+import com.example.gbwwebappbackend.entity.Vacancy;
+import com.example.gbwwebappbackend.entity.VacancyType;
+import com.example.gbwwebappbackend.repository.VacancyRepository;
+import com.example.gbwwebappbackend.service.VacancyTypeService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
-public class VacancyServiceImpl implements VacancyService {
+@AllArgsConstructor
+public class VacancyServiceImpl implements VacancyService{
+    private VacancyRepository vacancyRepository;
 
-    private final VacancyApplicationRepository vacancyApplicationRepository;
-    private final AttachmentRepository attachmentRepository;
-    private final AttachmentService attachmentService;
+    private VacancyTypeService vacancyTypeService;
 
-    public VacancyServiceImpl(VacancyApplicationRepository vacancyApplicationRepository,
-                              AttachmentRepository attachmentRepository, AttachmentService attachmentService) {
-        this.vacancyApplicationRepository = vacancyApplicationRepository;
-        this.attachmentRepository = attachmentRepository;
-        this.attachmentService = attachmentService;
+    @Override
+    public List<Vacancy> getAll() {
+        return vacancyRepository.findAll();
     }
 
     @Override
-    public void saveSubmittedApplication(String fullName, String email, String phone, String position, String content, MultipartFile file) {
-        var vacancyApplication = new VacancyApplication();
-
-        Attachment savedAttachment = attachmentService.save(file);
-
-        vacancyApplication.setId(UUID.randomUUID().toString());
-        vacancyApplication.setFullName(fullName);
-        vacancyApplication.setEmail(email);
-        vacancyApplication.setPhone(phone);
-        vacancyApplication.setContent(content);
-        vacancyApplication.setAttachment(savedAttachment);
-
-        vacancyApplicationRepository.save(vacancyApplication);
-
+    public List<Vacancy> getByType(String type) {
+        return vacancyRepository.getVacanciesByType(vacancyTypeService.getVacancyTypeById(type));
     }
+
+
 }
