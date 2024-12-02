@@ -15,6 +15,6 @@ public class Vacancy extends BaseModel{
     private String description;
     @NotNull
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "attachment_id", nullable = false)
+    @JoinColumn(name = "vacancy_type_id", nullable = false)
     private VacancyType type;
 }
