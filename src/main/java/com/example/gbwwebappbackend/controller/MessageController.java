@@ -8,15 +8,33 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
-@RequestMapping("/contact")
+@RequestMapping("/contact/message")
 public class MessageController {
     private final MessageService messageService;
 
-//    @CrossOrigin
-    @PostMapping(value = "message")
+    @PostMapping
     public ResponseEntity<MessageResponseDTO> sendMessage(@RequestBody MessageRequestDTO message) {
         return ResponseEntity.ok(messageService.save(message));
     }
+
+    @GetMapping(value = "/get/custom")
+    public ResponseEntity<Object> getMessage(@RequestParam int page, @RequestParam int size) {
+
+        List<MessageResponseDTO> asPaging = messageService.getAsPaging(page, size);
+
+        return ResponseEntity.ok(asPaging);
+    }
+
+    @GetMapping(value = "/get")
+    public ResponseEntity<Object> getMessage(@RequestParam String id) {
+
+        var messageResponseDTO = messageService.getBy(id);
+
+        return ResponseEntity.ok(messageResponseDTO);
+    }
+
 }
