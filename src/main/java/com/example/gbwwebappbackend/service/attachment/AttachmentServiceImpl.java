@@ -1,14 +1,7 @@
 package com.example.gbwwebappbackend.service.attachment;
 
-import com.example.gbwwebappbackend.domain.request.MessageRequestDTO;
-import com.example.gbwwebappbackend.domain.response.MessageResponseDTO;
 import com.example.gbwwebappbackend.entity.Attachment;
-import com.example.gbwwebappbackend.entity.Message;
-import com.example.gbwwebappbackend.mapper.MessageMapper;
 import com.example.gbwwebappbackend.repository.AttachmentRepository;
-import com.example.gbwwebappbackend.repository.MessageRepository;
-import com.example.gbwwebappbackend.service.message.MessageService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

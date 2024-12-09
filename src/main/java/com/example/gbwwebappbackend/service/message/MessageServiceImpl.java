@@ -1,25 +1,23 @@
 package com.example.gbwwebappbackend.service.message;
 
 import com.example.gbwwebappbackend.domain.request.MessageRequestDTO;
-import com.example.gbwwebappbackend.domain.response.MessageResponseDTO;
+import com.example.gbwwebappbackend.domain.response.PageResponseDto;
+import com.example.gbwwebappbackend.domain.response.contactmessage.MessageResponseDTO;
 import com.example.gbwwebappbackend.entity.Message;
 import com.example.gbwwebappbackend.mapper.MessageMapper;
 import com.example.gbwwebappbackend.repository.MessageRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.OffsetDateTime;
-import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -38,7 +36,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public List<MessageResponseDTO> getAsPaging(int page, int size) {
+    public PageResponseDto getAsPaging(int page, int size) {
 
         PageRequest pageable = PageRequest.of(page - 1, size, Sort.Direction.DESC, "createdAt");
 
@@ -52,8 +50,19 @@ public class MessageServiceImpl implements MessageService {
             responseDTOList.add(messageResponseDTO);
         });
 
+        return PageResponseDto.builder()
+                .contents(responseDTOList)
+                .hasNext(all.hasNext())
+                .hasPrevious(all.hasPrevious())
+                .totalPages(all.getTotalPages())
+                .numberOfElements(responseDTOList.size())
+                .totalElements(all.getTotalElements())
+                .pageNumber(all.getNumber()+1)
+                .isFirst(all.isFirst())
+                .isLast(all.isLast())
+                .size(all.getSize())
+                .build();
 
-        return responseDTOList;
     }
 
     @Override

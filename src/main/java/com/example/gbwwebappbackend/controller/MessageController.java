@@ -2,7 +2,8 @@ package com.example.gbwwebappbackend.controller;
 
 
 import com.example.gbwwebappbackend.domain.request.MessageRequestDTO;
-import com.example.gbwwebappbackend.domain.response.MessageResponseDTO;
+import com.example.gbwwebappbackend.domain.response.PageResponseDto;
+import com.example.gbwwebappbackend.domain.response.contactmessage.MessageResponseDTO;
 import com.example.gbwwebappbackend.service.message.MessageService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ public class MessageController {
     @GetMapping(value = "/get/custom")
     public ResponseEntity<Object> getMessage(@RequestParam int page, @RequestParam int size) {
 
-        List<MessageResponseDTO> asPaging = messageService.getAsPaging(page, size);
+        PageResponseDto asPaging = messageService.getAsPaging(page, size);
 
         return ResponseEntity.ok(asPaging);
     }
