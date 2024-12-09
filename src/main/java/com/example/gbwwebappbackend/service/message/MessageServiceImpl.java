@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,13 +29,12 @@ public class MessageServiceImpl implements MessageService {
     private final MessageMapper messageMapper;
 
     @Override
-    public MessageResponseDTO save(MessageRequestDTO message) {
+    public void save(MessageRequestDTO message) {
         Message entity = messageMapper.fromDtoToEntity(message);
 
         entity.setId(UUID.randomUUID().toString());
 
-        Message save = messageRepository.save(entity);
-        return messageMapper.fromEntityToDto(save);
+        messageRepository.save(entity);
     }
 
     @Override
@@ -45,9 +46,9 @@ public class MessageServiceImpl implements MessageService {
 
         List<MessageResponseDTO> responseDTOList = new ArrayList<>();
 
-        all.toList().stream().forEach(message -> {
+        all.toList().forEach(message -> {
             var messageResponseDTO = messageMapper.fromEntityToDto(message);
-            messageResponseDTO.setCreatedTime(String.valueOf(message.getCreatedAt().toEpochSecond(ZoneOffset.MIN)));
+            messageResponseDTO.setCreatedTime(String.valueOf(message.getCreatedAt().toEpochSecond(ZoneOffset.UTC)));
             responseDTOList.add(messageResponseDTO);
         });
 

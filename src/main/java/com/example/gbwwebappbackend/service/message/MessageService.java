@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public interface MessageService {
-    MessageResponseDTO save(MessageRequestDTO message);
+    void save(MessageRequestDTO message);
 
     List<MessageResponseDTO> getAsPaging(int page, int size);
 

@@ -5,6 +5,7 @@ import com.example.gbwwebappbackend.domain.request.MessageRequestDTO;
 import com.example.gbwwebappbackend.domain.response.MessageResponseDTO;
 import com.example.gbwwebappbackend.service.message.MessageService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +18,9 @@ public class MessageController {
     private final MessageService messageService;
 
     @PostMapping
-    public ResponseEntity<MessageResponseDTO> sendMessage(@RequestBody MessageRequestDTO message) {
-        return ResponseEntity.ok(messageService.save(message));
+    public ResponseEntity<Object> sendMessage(@RequestBody MessageRequestDTO message) {
+        messageService.save(message);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping(value = "/get/custom")
