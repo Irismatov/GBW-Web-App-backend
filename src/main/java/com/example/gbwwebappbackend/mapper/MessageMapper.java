@@ -3,7 +3,7 @@ package com.example.gbwwebappbackend.mapper;
 
 import com.example.gbwwebappbackend.domain.request.MessageRequestDTO;
 import com.example.gbwwebappbackend.domain.request.QuestionApplicationRequestAddingDto;
-import com.example.gbwwebappbackend.domain.response.MessageResponseDTO;
+import com.example.gbwwebappbackend.domain.response.contactmessage.MessageResponseDTO;
 import com.example.gbwwebappbackend.entity.Message;
 import com.example.gbwwebappbackend.entity.QuestionApplication;
 import org.mapstruct.Mapper;
