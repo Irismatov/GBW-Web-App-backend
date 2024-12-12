@@ -1,4 +1,4 @@
-package com.example.gbwwebappbackend.domain.response;
+package com.example.gbwwebappbackend.domain.response.contactmessage;
 
 
 import lombok.AllArgsConstructor;
@@ -18,4 +18,6 @@ public class MessageResponseDTO {
     private String email;
     private String phone;
     private String content;
+    private String createdTime;
+
 }

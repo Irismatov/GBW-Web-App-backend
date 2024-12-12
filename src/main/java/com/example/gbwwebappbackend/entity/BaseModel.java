@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
@@ -18,9 +19,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public abstract class BaseModel {
-    @CreationTimestamp
+    @CreationTimestamp(source = SourceType.VM)
     private LocalDateTime createdAt;
-    @UpdateTimestamp
+    @UpdateTimestamp(source = SourceType.VM)
     private LocalDateTime updatedAt;
     private boolean isActive;
     @PrePersist
