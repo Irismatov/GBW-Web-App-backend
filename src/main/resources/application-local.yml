@@ -3,9 +3,9 @@ spring:
     name: GBW-Web-App-backend
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: 2365
-    url: jdbc:postgresql://localhost:5432/gbw_app_backend
+    username: { username }
+    password: { parol }
+    url: jdbc:postgresql://localhost:5432/{database_name}
   jpa:
     hibernate:
       ddl-auto: update
