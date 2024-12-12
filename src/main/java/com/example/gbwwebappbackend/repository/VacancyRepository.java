@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface VacancyRepository extends JpaRepository<Vacancy, Long> {
+public interface VacancyRepository extends JpaRepository<Vacancy, String> {
 
     List<Vacancy> getVacanciesByType(VacancyType type);
 }

@@ -14,13 +14,11 @@ import java.util.UUID;
 public class VacancyApplicationServiceImpl implements VacancyApplicationService {
 
     private final VacancyApplicationRepository vacancyApplicationRepository;
-    private final AttachmentRepository attachmentRepository;
     private final AttachmentService attachmentService;
 
     public VacancyApplicationServiceImpl(VacancyApplicationRepository vacancyApplicationRepository,
                                          AttachmentRepository attachmentRepository, AttachmentService attachmentService) {
         this.vacancyApplicationRepository = vacancyApplicationRepository;
-        this.attachmentRepository = attachmentRepository;
         this.attachmentService = attachmentService;
     }
 
@@ -28,14 +26,14 @@ public class VacancyApplicationServiceImpl implements VacancyApplicationService 
     public void saveSubmittedApplication(String fullName, String email, String phone, String position, String content, MultipartFile file) {
         var vacancyApplication = new VacancyApplication();
 
-        Attachment savedAttachment = attachmentService.save(file);
+//        Attachment savedAttachment = attachmentService.save(file);
 
         vacancyApplication.setId(UUID.randomUUID().toString());
         vacancyApplication.setFullName(fullName);
         vacancyApplication.setEmail(email);
         vacancyApplication.setPhone(phone);
         vacancyApplication.setContent(content);
-        vacancyApplication.setAttachment(savedAttachment);
+//        vacancyApplication.setAttachment(savedAttachment);
 
         vacancyApplicationRepository.save(vacancyApplication);
 

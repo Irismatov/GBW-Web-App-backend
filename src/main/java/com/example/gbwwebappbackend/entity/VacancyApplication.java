@@ -17,7 +17,6 @@ public class VacancyApplication extends BaseModel{
     private String email;
     private String content;
 
-    @NotNull
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "attachment_id", nullable = false)
     private Attachment attachment;

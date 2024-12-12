@@ -9,8 +9,7 @@ import lombok.Data;
 @Entity
 public class Vacancy extends BaseModel{
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long vacancyId;
+    private String vacancyId;
     private String title;
     private String description;
     @NotNull
