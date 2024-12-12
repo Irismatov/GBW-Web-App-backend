@@ -14,10 +14,10 @@ import java.util.UUID;
 //@AllArgsConstructor
 public class AttachmentServiceImpl implements AttachmentService {
 
-    @Value("${file.saving.directory.base}")
+    @Value("${file.saving.directory.base.dir}")
     private String baseDir;
 
-    @Value("${file.saving.directory.base.sub}")
+    @Value("${file.saving.directory.base.sub.dir}")
     private String subDIr;
 
 
