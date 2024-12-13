@@ -13,8 +13,12 @@ public class Vacancy extends BaseModel{
     private long vacancyId;
     private String title;
     private String description;
+    private String requirements;
+    private String offers;
+    private String responsibilities;
     @NotNull
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "vacancy_type_id", nullable = false)
     private VacancyType type;
+    private String terms;
 }

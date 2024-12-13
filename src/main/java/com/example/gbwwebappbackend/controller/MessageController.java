@@ -15,7 +15,7 @@ public class MessageController {
     private final MessageService messageService;
 
 //    @CrossOrigin
-    @PostMapping(value = "message")
+    @PostMapping(value = "/message")
     public ResponseEntity<MessageResponseDTO> sendMessage(@RequestBody MessageRequestDTO message) {
         return ResponseEntity.ok(messageService.save(message));
     }

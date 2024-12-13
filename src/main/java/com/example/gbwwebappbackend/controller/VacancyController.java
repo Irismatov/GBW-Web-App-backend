@@ -1,5 +1,7 @@
 package com.example.gbwwebappbackend.controller;
 
+import com.example.gbwwebappbackend.domain.request.VacancySaveRequestDTO;
+import com.example.gbwwebappbackend.service.VacancyTypeService;
 import com.example.gbwwebappbackend.service.vacancy.VacancyService;
 import com.example.gbwwebappbackend.service.vacancy_application.VacancyApplicationService;
 import lombok.AllArgsConstructor;
@@ -14,6 +16,7 @@ public class VacancyController {
 
     private final VacancyApplicationService vacancyApplicationService;
     private final VacancyService vacancyService;
+    private final VacancyTypeService vacancyTypeService;
 
     //    @CrossOrigin
     @PostMapping(value = "/submit-application", consumes = "multipart/form-data")
@@ -31,15 +34,27 @@ public class VacancyController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/getVacancies")
+
+    @PostMapping("/saveVacancy")
+    public ResponseEntity<Object> saveVacancy(@RequestBody VacancySaveRequestDTO dto) {
+        return ResponseEntity.ok(vacancyService.save(dto));
+    }
+
+    @GetMapping("/getAllVacancies")
     public ResponseEntity<Object> getVacancies() {
-        return ResponseEntity.ok(vacancyService.getAll());
+        return ResponseEntity.ok(vacancyService.getAllVacancies());
     }
 
     @GetMapping("/getByType")
     public ResponseEntity<Object> getVacancyTypes(@RequestParam("typeId") String typeId) {
         return ResponseEntity.ok(vacancyService.getByType(typeId));
     }
+
+    @GetMapping("/getAllVacancyTypes")
+    public ResponseEntity<Object> getAllVacancyTypes() {
+        return ResponseEntity.ok(vacancyTypeService.getAllVacancyTypes());
+    }
+
 }
 
 
