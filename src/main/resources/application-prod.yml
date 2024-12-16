@@ -3,13 +3,13 @@ spring:
     name: GBW-Web-App-backend
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: ${DB_C_BY_U_GBWAY_NAME}
-    password: ${DB_C_BY_U_GBWAY_PASSWORD}
+    username: { username }
+    password: { password }
     url: jdbc:postgresql://83.69.135.51:5432/apigbwayuz
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
 
   servlet:
     multipart:
