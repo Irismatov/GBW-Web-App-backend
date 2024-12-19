@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,18 +19,14 @@ import java.util.stream.Collectors;
 public class VacancyServiceImpl implements VacancyService{
     private VacancyRepository vacancyRepository;
 
-    private VacancyTypeService vacancyTypeService;
     private VacancyMapper vacancyMapper;
 
-    @Override
-    public List<Vacancy> getByType(String type) {
-        return vacancyRepository.getVacanciesByType(vacancyTypeService.getVacancyTypeById(type));
-    }
+
 
     @Override
     public Vacancy save(VacancySaveRequestDTO dto) {
         Vacancy vacancy = vacancyMapper.fromDtoToEntity(dto);
-        vacancy.setType(vacancyTypeService.getVacancyTypeById(dto.getVacancyTypeId()));
+        vacancy.setVacancyId(UUID.randomUUID().toString());
         return vacancyRepository.save(vacancy);
     }
 
@@ -38,9 +35,7 @@ public class VacancyServiceImpl implements VacancyService{
         List<Vacancy> vacancies = vacancyRepository.findAll();
 
         return vacancies.stream().map(vacancy -> {
-            VacancyResponseDTO vacancyResponseDTO = vacancyMapper.fromEntityToDto(vacancy);
-            vacancyResponseDTO.setTypeName(vacancy.getType().getNameUz());
-            return vacancyResponseDTO;
+            return vacancyMapper.fromEntityToDto(vacancy);
         }).collect(Collectors.toList());
     }
 

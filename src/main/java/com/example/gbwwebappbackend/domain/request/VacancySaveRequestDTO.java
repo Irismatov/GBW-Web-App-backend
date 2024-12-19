@@ -12,10 +12,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class VacancySaveRequestDTO {
     private String title;
-    private String description;
-    private String responsibilities;
-    private String offers;
-    private String requirements;
-    private String vacancyTypeId;
-    private String terms;
+    private String content;
 }

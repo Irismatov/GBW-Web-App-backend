@@ -45,10 +45,6 @@ public class VacancyController {
         return ResponseEntity.ok(vacancyService.getAllVacancies());
     }
 
-    @GetMapping("/getByType")
-    public ResponseEntity<Object> getVacancyTypes(@RequestParam("typeId") String typeId) {
-        return ResponseEntity.ok(vacancyService.getByType(typeId));
-    }
 
     @GetMapping("/getAllVacancyTypes")
     public ResponseEntity<Object> getAllVacancyTypes() {

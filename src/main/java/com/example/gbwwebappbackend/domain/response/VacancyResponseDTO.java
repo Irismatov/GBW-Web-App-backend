@@ -11,12 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class VacancyResponseDTO {
-    private long id;
+    private String id;
     private String title;
-    private String description;
-    private String terms;
-    private String requirements;
-    private String offers;
-    private String typeName;
-    private String responsibilities;
+    private String content;
 }

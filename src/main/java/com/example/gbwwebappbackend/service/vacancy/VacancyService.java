@@ -12,7 +12,6 @@ import java.util.List;
 @Service
 public interface VacancyService {
 
-    List<Vacancy> getByType(String type);
 
     Vacancy save(VacancySaveRequestDTO dto);
 
