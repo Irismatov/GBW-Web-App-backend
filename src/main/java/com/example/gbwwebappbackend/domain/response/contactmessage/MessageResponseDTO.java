@@ -18,7 +18,6 @@ public class MessageResponseDTO {
     private String email;
     private String phone;
     private boolean isRead;
-    private boolean isActive;
     private String content;
     private String createdTime;
 
