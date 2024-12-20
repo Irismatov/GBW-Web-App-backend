@@ -2,7 +2,6 @@ package com.example.gbwwebappbackend.entity;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import lombok.*;
 
 @Entity
@@ -19,6 +18,14 @@ public class Message extends BaseModel {
     private String company;
     private String email;
     private String phone;
+    @Column(nullable = false)
+    private boolean isRead;
     @Column(length = 10000)
     private String content;
+
+    @Override
+    protected void onCreate() {
+        isRead = false;
+    }
+
 }

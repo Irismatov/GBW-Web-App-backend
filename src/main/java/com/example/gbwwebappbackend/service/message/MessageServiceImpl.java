@@ -47,6 +47,8 @@ public class MessageServiceImpl implements MessageService {
         all.toList().forEach(message -> {
             var messageResponseDTO = messageMapper.fromEntityToDto(message);
             messageResponseDTO.setCreatedTime(String.valueOf(message.getCreatedAt().toEpochSecond(ZoneOffset.UTC)));
+            messageResponseDTO.setActive(message.isActive());
+            System.out.println("message.getIsRead() = " + message.isRead());
             responseDTOList.add(messageResponseDTO);
         });
 
