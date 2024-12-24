@@ -2,6 +2,7 @@ package com.example.gbwwebappbackend.controller;
 
 
 import com.example.gbwwebappbackend.domain.request.MessageRequestDTO;
+import com.example.gbwwebappbackend.domain.request.message.IsReadMessageReqDto;
 import com.example.gbwwebappbackend.domain.response.PageResponseDto;
 import com.example.gbwwebappbackend.domain.response.contactmessage.MessageResponseDTO;
 import com.example.gbwwebappbackend.service.message.MessageService;
@@ -39,6 +40,14 @@ public class MessageController {
         var messageResponseDTO = messageService.getBy(id);
 
         return ResponseEntity.ok(messageResponseDTO);
+    }
+
+    @PostMapping(value = "/is-read")
+    public ResponseEntity<Object> isReadMessage(@RequestBody @Validated IsReadMessageReqDto isReadMessageDto) {
+        boolean status = messageService.isReadMessage(isReadMessageDto);
+
+        return ResponseEntity.status(status?HttpStatus.OK:HttpStatus.NOT_MODIFIED).build();
+
     }
 
 }

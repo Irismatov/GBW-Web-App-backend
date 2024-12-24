@@ -1,6 +1,7 @@
 package com.example.gbwwebappbackend.service.message;
 
 import com.example.gbwwebappbackend.domain.request.MessageRequestDTO;
+import com.example.gbwwebappbackend.domain.request.message.IsReadMessageReqDto;
 import com.example.gbwwebappbackend.domain.response.PageResponseDto;
 import com.example.gbwwebappbackend.domain.response.contactmessage.MessageResponseDTO;
 import com.example.gbwwebappbackend.entity.Message;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZoneOffset;
 import java.util.ArrayList;
@@ -25,6 +27,15 @@ public class MessageServiceImpl implements MessageService {
 
     private final MessageRepository messageRepository;
     private final MessageMapper messageMapper;
+
+    @Override
+    public boolean isReadMessage(IsReadMessageReqDto isReadMessageDto) {
+
+        System.out.println("isReadMessageDto = " + isReadMessageDto);
+        int i = messageRepository.updateIsReadById(isReadMessageDto.getIsRead(), isReadMessageDto.getId());
+
+        return i > 0;
+    }
 
     @Override
     public void save(MessageRequestDTO message) {
