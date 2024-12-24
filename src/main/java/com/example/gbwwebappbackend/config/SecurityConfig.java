@@ -1,6 +1,10 @@
 package com.example.gbwwebappbackend.config;
 
 import com.example.gbwwebappbackend.filter.SecurityFilter;
+import com.example.gbwwebappbackend.service.auth.JwtService;
+import com.example.gbwwebappbackend.service.user.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,6 +21,9 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+        @Autowired
+        ApplicationContext applicationContext;
+
         private final String[] WHITE_LIST = {"/register", "/login", "/"};
 
         @Bean
@@ -25,11 +32,10 @@ public class SecurityConfig {
                     .csrf(AbstractHttpConfigurer::disable)
                     .authorizeHttpRequests((authorizeHttpRequestsConfigurer) -> {
                         authorizeHttpRequestsConfigurer
-                                .requestMatchers("/css/**", "/js/**").permitAll()
                                 .requestMatchers(WHITE_LIST).permitAll()
                                 .anyRequest().authenticated();
                     })
-                    .addFilterBefore(new SecurityFilter(),
+                    .addFilterBefore(new SecurityFilter(applicationContext.getBean(JwtService.class), applicationContext.getBean(UserService.class)),
                             UsernamePasswordAuthenticationFilter.class)
                     .build();
         }
