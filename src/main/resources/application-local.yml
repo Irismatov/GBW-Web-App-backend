@@ -4,8 +4,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: 2365
-    url: jdbc:postgresql://localhost:5432/gbw_app_backend
+    password: J@khongir_2016
+    url: jdbc:postgresql://localhost:5432/gbw_admin
   jpa:
     hibernate:
       ddl-auto: update
@@ -34,4 +34,5 @@ file:
 
 
 
-
+jwt:
+  secret: zK9V3QxrH8L2Wn9cNxLmTd9ZxHzo8JWlMkLg9rGgjNU=
