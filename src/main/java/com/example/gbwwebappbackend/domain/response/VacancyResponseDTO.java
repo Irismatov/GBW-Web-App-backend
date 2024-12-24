@@ -14,4 +14,5 @@ public class VacancyResponseDTO {
     private String id;
     private String title;
     private String content;
+    private boolean isActive;
 }
