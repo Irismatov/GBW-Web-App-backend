@@ -3,6 +3,7 @@ package com.example.gbwwebappbackend.config;
 import com.example.gbwwebappbackend.filter.SecurityFilter;
 import com.example.gbwwebappbackend.service.auth.JwtService;
 import com.example.gbwwebappbackend.service.user.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -17,6 +19,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+
+import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -42,6 +46,7 @@ public class SecurityConfig {
                                 .requestMatchers(WHITE_LIST).permitAll()
                                 .anyRequest().authenticated();
                     })
+                    .sessionManagement(config -> config.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                     .addFilterBefore(new SecurityFilter(applicationContext.getBean(JwtService.class), applicationContext.getBean(UserService.class)),
                             UsernamePasswordAuthenticationFilter.class)
                     .build();
@@ -70,5 +75,7 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
+
 
 }

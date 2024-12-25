@@ -1,5 +1,6 @@
 package com.example.gbwwebappbackend.exceptions.handling;
 
+import io.jsonwebtoken.JwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -13,6 +14,7 @@ import java.util.Map;
 
 @RestControllerAdvice
 public class ValidationExceptionHandling {
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Map<String, String>>> handleValidationException(MethodArgumentNotValidException ex) {
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
@@ -28,4 +30,14 @@ public class ValidationExceptionHandling {
         errors.put("error", fieldErrorDto);
         return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(errors);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Map<String, String>> handleJwtException(RuntimeException ex) {
+        String fieldErrors = ex.getMessage();
+        Map<String, String> errors = new HashMap<>();
+        errors.put("error", "JWT token is invalid");
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(errors);
+    }
+
+
 }

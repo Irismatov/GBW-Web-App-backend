@@ -7,9 +7,8 @@ import com.example.gbwwebappbackend.service.auth.AuthService;
 import com.example.gbwwebappbackend.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -29,6 +28,11 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequestDto dto) {
         return ResponseEntity.ok(authService.login(dto));
+    }
+
+    @GetMapping("/check-auth")
+    public ResponseEntity<Object> validateAuthToken() {
+        return ResponseEntity.ok().build();
     }
 
 }
