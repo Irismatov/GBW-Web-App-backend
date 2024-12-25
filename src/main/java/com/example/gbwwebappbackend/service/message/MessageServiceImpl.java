@@ -31,7 +31,6 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public boolean isReadMessage(IsReadMessageReqDto isReadMessageDto) {
 
-        System.out.println("isReadMessageDto = " + isReadMessageDto);
         int i = messageRepository.updateIsReadById(isReadMessageDto.getIsRead(), isReadMessageDto.getId());
 
         return i > 0;

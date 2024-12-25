@@ -78,7 +78,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     }
 
     private void sendError(HttpServletResponse resp, String msg)  {
-        resp.setStatus(HttpServletResponse.SC_BAD_GATEWAY);
+        resp.setStatus(HttpServletResponse.SC_NOT_ACCEPTABLE);
         resp.setContentType("application/json");
 
 
