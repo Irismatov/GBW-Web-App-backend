@@ -24,7 +24,14 @@ public class SecurityConfig {
         @Autowired
         ApplicationContext applicationContext;
 
-        private final String[] WHITE_LIST = {"/register", "/login"};
+        private final String[] WHITE_LIST = {
+                "/register",
+                "/login",
+                "/contact/message",
+                "/news-letter/register",
+                "/questions/add",
+                "/vacancy/submit-application"
+        };
 
         @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

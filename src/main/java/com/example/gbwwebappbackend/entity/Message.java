@@ -25,6 +25,7 @@ public class Message extends BaseModel {
 
     @Override
     protected void onCreate() {
+        super.setActive(true);
         isRead = false;
     }
 

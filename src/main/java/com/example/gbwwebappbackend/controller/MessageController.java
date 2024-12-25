@@ -9,6 +9,7 @@ import com.example.gbwwebappbackend.service.message.MessageService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,7 @@ public class MessageController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+//    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping(value = "/get/custom")
     public ResponseEntity<Object> getMessage(@RequestParam int page, @RequestParam int size) {
 

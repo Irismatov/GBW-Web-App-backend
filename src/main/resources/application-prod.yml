@@ -33,5 +33,11 @@ file:
           news: News
 
 
+jwt:
+  secret: zK9V3QxrH8L2Wn9cNxLmTd9ZxHzo8JWlMkLg9rGgjNU=
+
+admin:
+  username: gbway
+  password: $2y$10$t6xgi58NwfiiEo2ZDBuVZekkic1p1YxxT758kg4js3V82.V9G7WfG
 
 
