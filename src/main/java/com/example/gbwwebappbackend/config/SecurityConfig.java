@@ -15,6 +15,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -47,6 +48,7 @@ public class SecurityConfig {
                                 .anyRequest().authenticated();
                     })
                     .sessionManagement(config -> config.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                    .addFilterBefore(corsFilter(), ChannelProcessingFilter.class)
                     .addFilterBefore(new SecurityFilter(applicationContext.getBean(JwtService.class), applicationContext.getBean(UserService.class)),
                             UsernamePasswordAuthenticationFilter.class)
                     .build();
@@ -57,8 +59,6 @@ public class SecurityConfig {
         public PasswordEncoder passwordEncoder() {
             return new BCryptPasswordEncoder();
         }
-
-
 
     @Bean
     public CorsFilter corsFilter() {
@@ -75,7 +75,5 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
-
-
 
 }
