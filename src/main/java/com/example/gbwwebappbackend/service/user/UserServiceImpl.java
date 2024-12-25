@@ -15,14 +15,12 @@ public class UserServiceImpl implements UserService {
 
 
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
     @Override
     public User save(RegisterRequestDto dto) {
         User user = new User();
         user.setUsername(dto.getUsername());
-        String encodedPassword = passwordEncoder.encode(dto.getPassword());
-        user.setPassword(encodedPassword);
+        user.setPassword(dto.getPassword());
         user.setRole(UserRole.ADMIN);
        return userRepository.save(user);
     }
