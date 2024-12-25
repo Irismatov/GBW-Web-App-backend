@@ -1,4 +1,4 @@
-package com.example.gbwwebappbackend.service;
+package com.example.gbwwebappbackend.service.vacancy;
 
 
 import com.example.gbwwebappbackend.entity.VacancyType;

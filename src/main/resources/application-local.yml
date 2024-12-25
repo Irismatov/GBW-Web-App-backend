@@ -4,7 +4,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     username: postgres
-    password: 2365
+    password: 1255
     url: jdbc:postgresql://localhost:5432/gbw_app_backend
   jpa:
     hibernate:
@@ -34,4 +34,10 @@ file:
 
 
 
+jwt:
+  secret: zK9V3QxrH8L2Wn9cNxLmTd9ZxHzo8JWlMkLg9rGgjNU=
+
+admin:
+  username: gbwadmin
+  password: $2a$10$Cm6iOnqsTjb1LFMHfnL55uGNKxm0dvgqdHB/Lr.6NqKdroXN3jeP6
 

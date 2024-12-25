@@ -2,9 +2,7 @@ package com.example.gbwwebappbackend.service.vacancy;
 
 
 import com.example.gbwwebappbackend.entity.Vacancy;
-import com.example.gbwwebappbackend.entity.VacancyType;
 import com.example.gbwwebappbackend.repository.VacancyRepository;
-import com.example.gbwwebappbackend.service.VacancyTypeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
