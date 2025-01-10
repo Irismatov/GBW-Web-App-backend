@@ -5,7 +5,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: gbway
     password: Gb12345db
-    url: jdbc:postgresql://83.69.135.51:5432/apigbwayuz
+    url: jdbc:postgresql://45.92.173.58:5432/apigbwayuz
   jpa:
     hibernate:
       ddl-auto: update

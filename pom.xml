@@ -9,16 +9,30 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>GBW-Web-App-backend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>GBW-Web-App-backend</name>
-    <description>GBW-Web-App-backend</description>
+    <artifactId>api-gbway-uz</artifactId>
+    <version>1.1</version>
+    <name>GBW-Backend-App</name>
+    <description>Backend App for All GB Way Websites and Services</description>
     <url/>
     <licenses>
         <license/>
     </licenses>
     <developers>
-        <developer/>
+        <developer>
+            <name>Jayxunbek</name>
+            <email>muxammedovjayxun@gmail.com</email>
+            <organization>GB Way LLC</organization>
+            <organizationUrl>gbway.uz</organizationUrl>
+            <timezone>GMT +5</timezone>
+            <roles>
+                <role>
+                    FullStack Developer
+                </role>
+                <role>
+                    DevOps
+                </role>
+            </roles>
+        </developer>
     </developers>
     <scm>
         <connection/>
