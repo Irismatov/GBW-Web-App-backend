@@ -17,4 +17,6 @@ public interface VacancyApplicationService {
     Page<VacancyApplication> getVacancyApplications(GetVacancyApplicationRequestDTO dto, Pageable pageable);
 
     VacancyApplication updateVacancyApplicationStatus(String vacancyId, String status);
+
+    String deleteVacancyApplication(String vacancyId);
 }

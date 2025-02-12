@@ -75,4 +75,10 @@ public class VacancyApplicationServiceImpl implements VacancyApplicationService 
         VacancyApplication save = vacancyApplicationRepository.save(vacancyApplication);
         return save;
     }
+
+    @Override
+    public String deleteVacancyApplication(String vacancyId) {
+        vacancyApplicationRepository.deleteVacancyApplication(vacancyId);
+        return "Application deleted successfully";
+    }
 }

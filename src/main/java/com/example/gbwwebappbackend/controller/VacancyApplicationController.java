@@ -87,4 +87,10 @@ public class VacancyApplicationController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("/{applicationId}")
+    public ResponseEntity<String> deleteVacancyApplication(@PathVariable String applicationId) {
+        String response = vacancyApplicationService.deleteVacancyApplication(applicationId);
+        return ResponseEntity.ok().body(response);
+    }
 }
