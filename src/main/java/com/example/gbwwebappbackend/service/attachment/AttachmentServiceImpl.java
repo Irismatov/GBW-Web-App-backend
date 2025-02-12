@@ -2,6 +2,7 @@ package com.example.gbwwebappbackend.service.attachment;
 
 import com.example.gbwwebappbackend.domain.request.MessageRequestDTO;
 import com.example.gbwwebappbackend.domain.response.MessageResponseDTO;
+import com.example.gbwwebappbackend.domain.response.PdfResponse;
 import com.example.gbwwebappbackend.entity.Attachment;
 import com.example.gbwwebappbackend.entity.Message;
 import com.example.gbwwebappbackend.mapper.MessageMapper;
@@ -9,6 +10,8 @@ import com.example.gbwwebappbackend.repository.AttachmentRepository;
 import com.example.gbwwebappbackend.repository.MessageRepository;
 import com.example.gbwwebappbackend.service.message.MessageService;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -78,6 +81,16 @@ public class AttachmentServiceImpl implements AttachmentService {
         attachmentRepository.save(attachment);
 
         return attachment;
+    }
+
+    @Override
+    public PdfResponse getDocument(String fileId) {
+        PdfResponse pdfResponse = new PdfResponse();
+
+        Attachment attachment = attachmentRepository.findById(fileId).orElseThrow(() -> new RuntimeException("Attachment not found with id: " + fileId));
+        pdfResponse.setFilePath(attachment.getPathDirectory() + "\\" + attachment.getId() + "." + attachment.getExtension());
+        pdfResponse.setFileId(attachment.getId());
+        return pdfResponse;
     }
 
     private void createPathIfNotExists(String directory) {
